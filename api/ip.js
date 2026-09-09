@@ -8,8 +8,19 @@ const getClientIp = (req) => {
 };
 
 module.exports = async (req, res) => {
-  // Enable CORS for local development (optional)
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    return res.status(204).end();
+  }
+
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Enable CORS for local development and cross-origin consumers.
   res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 'no-store');
 
   const clientIp = getClientIp(req);
 
@@ -39,7 +50,8 @@ module.exports = async (req, res) => {
       as: data.as,
     };
 
-    // Send to Telegram if tokens are provided
+    // Send to Telegram if tokens are provided. Notification failure must not
+    // make an otherwise successful IP lookup fail for the visitor.
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
     if (botToken && chatId) {
@@ -59,10 +71,14 @@ AS Number   : ${details.as}
 ─────────────────
 Generated at: ${new Date().toLocaleString()}`;
 
-      await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        chat_id: chatId,
-        text: message,
-      });
+      try {
+        await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          chat_id: chatId,
+          text: message,
+        }, { timeout: 8000 });
+      } catch (telegramError) {
+        console.error('Telegram notification failed:', telegramError.message);
+      }
     }
 
     res.status(200).json(details);
