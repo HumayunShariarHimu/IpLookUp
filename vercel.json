@@ -1,0 +1,14 @@
+{
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/ip.js" },
+    { "src": "/(.*)", "dest": "/public/index.html" }
+  ],
+  "builds": [
+    { "src": "/api/ip.js", "use": "@vercel/node" },
+    { "src": "/public/**", "use": "@vercel/static" }
+  ],
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
+    "TELEGRAM_CHAT_ID": "@telegram_chat_id"
+  }
+}
