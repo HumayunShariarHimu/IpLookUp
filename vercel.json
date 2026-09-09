@@ -2,6 +2,8 @@
   "version": 2,
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/ip.js" },
+    { "src": "/script.js", "dest": "/public/script.js" },
+    { "src": "/style.css", "dest": "/public/style.css" },
     { "src": "/(.*)", "dest": "/public/index.html" }
   ],
   "builds": [
