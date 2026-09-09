@@ -1,0 +1,18 @@
+{
+  "name": "ip-lookup",
+  "version": "1.0.0",
+  "description": "IP LookUp tool with Telegram integration, dark neon theme.",
+  "main": "api/ip.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.0.3"
+  },
+  "author": "Humayun Shariar Himu",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^28.0.0"
+  }
+}
