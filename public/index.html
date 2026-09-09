@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IP LookUp – Geolocation Tool</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="particles"></div>
+
+  <div class="app-wrapper">
+    <header class="header">
+      <div class="header-brand">
+        <span class="brand-icon">&#9763;</span>
+        <h1 class="brand-title">IP LookUp</h1>
+      </div>
+      <p class="brand-subtitle">Internet Protocol Address Lookup Tool</p>
+    </header>
+
+    <main class="main-content">
+      <section class="card current-ip-card" id="currentIpCard">
+        <div class="card-header">
+          <h2 class="card-title">Your Current IP</h2>
+          <button class="btn-refresh" id="refreshBtn" title="Refresh IP">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9" />
+            </svg>
+          </button>
+        </div>
+        <div class="ip-display" id="ipDisplay">Loading...</div>
+        <div class="details-grid" id="detailsGrid">
+          <div class="detail-item"><span class="label">Country</span><span class="value" id="country">-</span></div>
+          <div class="detail-item"><span class="label">Region</span><span class="value" id="region">-</span></div>
+          <div class="detail-item"><span class="label">City</span><span class="value" id="city">-</span></div>
+          <div class="detail-item"><span class="label">Postal Code</span><span class="value" id="postal">-</span></div>
+          <div class="detail-item"><span class="label">Coordinates</span><span class="value" id="coordinates">-</span></div>
+          <div class="detail-item"><span class="label">Timezone</span><span class="value" id="timezone">-</span></div>
+          <div class="detail-item"><span class="label">ISP</span><span class="value" id="isp">-</span></div>
+          <div class="detail-item"><span class="label">Organization</span><span class="value" id="org">-</span></div>
+          <div class="detail-item"><span class="label">AS Number</span><span class="value" id="as">-</span></div>
+        </div>
+        <div class="error-message" id="errorMessage"></div>
+      </section>
+
+      <div class="map-link-container">
+        <a href="#" id="mapLink" target="_blank" class="map-link">View on Map</a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Powered by <a href="https://ip-api.com" target="_blank">IP-API.com</a></p>
+      <p class="credit">Developed by Humayun Shariar Himu</p>
+    </footer>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
